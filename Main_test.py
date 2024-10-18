@@ -104,8 +104,8 @@ def gamest():
     deal_hand()
     turns = [0, 1]
     chosen_turn = random.choice(turns)
-    st_olor = Deck.colors
-    starting_color = random.choice(st_olor)
+    listOfColors = Deck.colors
+    starting_color = random.choice(listOfColors)
 
     print(f"Starting card color is {starting_color}.")
     time.sleep(2)
@@ -179,7 +179,7 @@ def gamest():
                                 "(e.g. red, green...)"
                                             )
 
-                        if color_prompt in st_olor:
+                        if color_prompt in listOfColors:
                             starting_color = color_prompt
                             print(f"The new color is {starting_color}...")
                             penalize_prompt = (
@@ -254,14 +254,14 @@ def gamest():
                     played1 = played.strip('[]')
                     playsplit = played1.split()
 
-                    card_col2 = playsplit[0].lower()
-                    card_val2 = playsplit[1] if len(playsplit) > 1 else playsplit
+                    colorValueAi = playsplit[0].lower()
+                    actionValueAi = playsplit[1] if len(playsplit) > 1 else playsplit
 
-                    card_cvp = f"{card_col2}"
-                    card_cva = f"{card_val2}"
-                    if card_cva in ["skip", "reverse", "draw_two"]:
-                        if card_cvp in starting_color:
-                            if card_cva == "skip":
+                    strOfColorVal = f"{colorValueAi}"
+                    strOfActionVal = f"{actionValueAi}"
+                    if strOfActionVal in ["skip", "reverse", "draw_two"]:
+                        if strOfColorVal in starting_color:
+                            if strOfActionVal == "skip":
                                 print(f"Skipping {user1.name}'s turn")
                                 time.sleep(2)
                                 os.system('clear')
@@ -270,8 +270,8 @@ def gamest():
                                 time.sleep(2)
                                 os.system('clear')
                                 chosen_turn = 1
-                            elif card_cva == "reverse":
-                                print("Turns are reverse")
+                            elif strOfActionVal == "reverse":
+                                print("Turns are reversed")
                                 time.sleep(2)
                                 os.system('clear')
 
@@ -279,7 +279,7 @@ def gamest():
                                 time.sleep(2)
                                 os.system('clear')
                                 chosen_turn = (chosen_turn + 1) % 2
-                            elif card_cva == "draw_two":
+                            elif strOfActionVal == "draw_two":
                                 print(f"{atf1.name} played: {played}")
                                 time.sleep(2)
                                 os.system('clear')
@@ -291,7 +291,7 @@ def gamest():
                                 time.sleep(2)
                                 os.system('clear')
                                 chosen_turn = 0
-                    elif card_cvp == starting_color:
+                    elif strOfColorVal == starting_color:
                         print(f"{atf1.name} played: {played}")
 
                         time.sleep(3)
@@ -300,7 +300,7 @@ def gamest():
 
                         # chosen_turn = 0
                     elif played1 in ["WILD", "W.DRAWF"]:
-                        ai_chosecolor = random.choice(st_olor)
+                        ai_chosecolor = random.choice(listOfColors)
                         starting_color = ai_chosecolor
                         print(f"The new color is {starting_color}...")
                         if played1 == "W.DRAWF":
