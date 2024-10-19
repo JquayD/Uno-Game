@@ -2,90 +2,10 @@ import random
 import time
 import getpass
 import os
+from DeckC import Deck 
+from DeckC import shuffledD
+from playerC import Player
 
-
-class Deck:
-    colors = ["red", "blue", "green", "yellow"]
-    actions = ["skip", "reverse", "draw_two"]
-    specials = ["WILD", "W.DRAWF"]
-    numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-    def __init__(self, color, action, special, numb):
-        self.color = color
-        self.action = action
-        self.special = special
-        self.numb = numb
-        self.dk_d = deck()
-
-
-class Player:
-
-    def __init__(self, name, is_ai=False):
-        self.hand = []
-        self.name = name
-        self.dshf = dshf
-
-    def play_card(self, card):
-        cardply = self.hand.pop(card)
-
-        return cardply
-
-    def draw_card(self):
-        if self.dshf:
-            card = self.dshf.pop(0)
-            self.hand.append(card)
-            return card
-        else:
-            return None
-
-
-    def display_hand(self):
-        print(f"{self.name}'s hand: ")
-        for idx, cards in enumerate(self.hand, start=1):
-            print(f"({cards}) |{idx}| ")
-
-    def ai_choose_card(self):
-        cardd = random.choice(atf1.hand)
-        card_index = atf1.hand.index(cardd)
-        play = atf1.hand.pop(card_index)
-        return play
-
-
-def deck():
-    cards = []
-
-    for color in Deck.colors:
-        for numb in Deck.numbers:
-            if numb == Deck.numbers[0]:
-                crd_o = f"[{color} {numb}]"
-                cards.append(crd_o)
-            else:
-                for _ in range(2):
-                    crd = f"[{color} {numb}]"
-                    cards.append(crd)
-
-    for color in Deck.colors:
-        for action in Deck.actions:
-            for _ in range(2):
-                crd_a = f"[{color} {action}]"
-                cards.append(crd_a)
-
-    for color in Deck.specials:
-        for _ in range(4):
-            crd_w = f"[{color}]"
-            cards.append(crd_w)
-
-    return cards
-
-
-def shuffled():
-    dkd = deck()
-    random.shuffle(dkd)
-
-    return dkd
-
-
-dshf = shuffled()
 
 username = getpass.getuser()
 user1 = Player(f"{username}")
